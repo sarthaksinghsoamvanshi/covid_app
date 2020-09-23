@@ -1,3 +1,5 @@
+import 'package:covid_app/clipper.dart';
+import 'package:covid_app/detailspage.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -32,13 +34,21 @@ class HomePage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               IconButton(
-                                  onPressed: null, icon: Icon(Icons.menu,color: Colors.white,))
+                                  onPressed: () => Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                              DetailsPage())),
+                                  icon: Icon(
+                                    Icons.menu,
+                                    color: Colors.white,
+                                  ))
                             ],
                           )
                         ],
                       )),
                 ),
               ),
+              Text("Symptoms",style:TextStyle(color: Colors.black,fontWeight:FontWeight.bold,fontSize:25))
               // Container(
               //   color: Colors.amber,
               //   margin: EdgeInsets.symmetric(vertical: 20),
@@ -193,25 +203,5 @@ class ColumnCases extends StatelessWidget {
         )
       ],
     );
-  }
-}
-
-class Roundclipper extends CustomClipper<Path> {
-  final height;
-  final width;
-
-  Roundclipper({this.height, this.width});
-  @override
-  Path getClip(Size size) {
-    Path path = Path();
-    path.lineTo(0, height - 80);
-    path.quadraticBezierTo(width / 2, height, width, height - 80);
-    path.lineTo(width, 0);
-    return path;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) {
-    return true;
   }
 }
